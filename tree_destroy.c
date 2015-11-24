@@ -18,7 +18,7 @@ static void			tree_dest_helper(t_tree *tree, t_tree_node *x)
 		tree_dest_helper(tree, x->left);
 		tree_dest_helper(tree, x->right);
 		tree->destroy_key(x->key);
-		tree->destroy_info(x->info);
+		tree->destroy_data(x->data);
 		free(x);
 	}
 }

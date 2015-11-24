@@ -27,11 +27,11 @@ void IntPrint(const void* a) {
   printf("%i",*(int*)a);
 }
 
-void InfoPrint(void*a) {
+void dataPrint(void*a) {
   (void)a;
 }
 
-void InfoDest(void *a){
+void dataDest(void *a){
   (void)a;
 }
 
@@ -45,8 +45,8 @@ int				main(void)
   t_tree		*tree;
 
 setvbuf(stdout, NULL, _IONBF, 0);
-  tree = tree_new(IntComp,IntDest,InfoDest);
-  tree->print_info = InfoPrint;
+  tree = tree_new(IntComp,IntDest,dataDest);
+  tree->print_data = dataPrint;
   tree->print_key = IntPrint;
   while(option!=8)
   {
@@ -86,7 +86,7 @@ setvbuf(stdout, NULL, _IONBF, 0);
 			printf("type key of node to query for\n");
 			scanf("%i",&newKey);
 			if ((newNode = tree_exact_query(tree,&newKey)))
-				printf("data found in tree at location %s\n", (char *)newNode->info);
+				printf("data found in tree at location %s\n", (char *)newNode->data);
 			else
 				printf("data not in tree\n");
 		}

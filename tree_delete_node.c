@@ -21,12 +21,13 @@ static void			delete_node(
 		if (!(y->red))
 			tree_delete_fixup(tree, x);
 		tree->destroy_key(z->key);
-		tree->destroy_info(z->info);
+		tree->destroy_data(z->data);
 		y->left = z->left;
 		y->right = z->right;
 		y->parent = z->parent;
 		y->red = z->red;
-		z->left->parent = z->right->parent = y;
+		z->right->parent = y;
+		z->left->parent = y;
 		if (z == z->parent->left)
 			z->parent->left = y;
 		else
@@ -35,7 +36,7 @@ static void			delete_node(
 		return ;
 	}
 	tree->destroy_key(y->key);
-	tree->destroy_info(y->info);
+	tree->destroy_data(y->data);
 	if (!(y->red))
 		tree_delete_fixup(tree, x);
 	free(y);

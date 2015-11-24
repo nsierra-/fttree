@@ -81,7 +81,7 @@ static void		tree_insert_2(t_tree *tree, t_tree_node *x, t_tree_node *y)
 	}
 }
 
-t_tree_node		*tree_insert(t_tree *tree, void *key, void *info)
+t_tree_node		*tree_insert(t_tree *tree, void *key, void *data)
 {
 	t_tree_node *y;
 	t_tree_node *x;
@@ -89,7 +89,7 @@ t_tree_node		*tree_insert(t_tree *tree, void *key, void *info)
 
 	x = safe_malloc(sizeof(t_tree_node));
 	x->key = key;
-	x->info = info;
+	x->data = data;
 	y = NULL;
 	tree_insert_help(tree, x);
 	new_node = x;

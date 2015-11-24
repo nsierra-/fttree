@@ -5,7 +5,7 @@
 
 typedef struct				s_tree_iter_node
 {
-	void					*info;
+	void					*data;
 	struct s_tree_iter_node	*next;
 }							t_tree_iter_node;
 

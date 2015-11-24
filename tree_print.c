@@ -15,15 +15,15 @@ void				inorder_tree_print(t_tree* tree, t_tree_node* x)
 
 	nil = tree->nil;
 	root = tree->root;
-	if (!tree->print_info || !tree->print_key)
+	if (!tree->print_data || !tree->print_key)
 		return ;
 	nil = tree->nil;
 	root = tree->root;
 	if (x != tree->nil)
 	{
 		inorder_tree_print(tree, x->left);
-		printf("info=");
-		tree->print_info(x->info);
+		printf("data=");
+		tree->print_data(x->data);
 		printf("  key=");
 		tree->print_key(x->key);
 		printf("  l->key=");

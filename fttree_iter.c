@@ -4,22 +4,23 @@
 
 t_tree_iter				*tree_iter_new(void)
 {
-	t_tree_iter	*new_stack;
+	t_tree_iter			*new_stack;
 
 	new_stack = safe_malloc(sizeof(t_tree_iter));
-	new_stack->top = new_stack->tail = NULL;
+	new_stack->tail = NULL;
+	new_stack->top = NULL;
 	return (new_stack);
 }
 
 
-void				tree_iter_push(t_tree_iter *stack, void *new_info_pointer)
+void					tree_iter_push(t_tree_iter *stack, void *new_data_ptr)
 {
 	t_tree_iter_node	*new_node;
 
 	if (!stack->top)
 	{
 		new_node = safe_malloc(sizeof(t_tree_iter_node));
-		new_node->info = new_info_pointer;
+		new_node->data = new_data_ptr;
 		new_node->next = stack->top;
 		stack->top = new_node;
 		stack->tail = new_node;
@@ -27,20 +28,20 @@ void				tree_iter_push(t_tree_iter *stack, void *new_info_pointer)
 	else
 	{
 		new_node = safe_malloc(sizeof(t_tree_iter_node));
-		new_node->info = new_info_pointer;
+		new_node->data = new_data_ptr;
 		new_node->next = stack->top;
 		stack->top = new_node;
 	}
 }
 
-void				*tree_iter_next(t_tree_iter *stack)
+void					*tree_iter_next(t_tree_iter *stack)
 {
-	void			*pop_info;
+	void				*pop_data;
 	t_tree_iter_node	*old_node;
 
 	if (stack->top)
 	{
-		pop_info = stack->top->info;
+		pop_data = stack->top->data;
 		old_node = stack->top;
 		stack->top = stack->top->next;
 		free(old_node);
@@ -48,26 +49,6 @@ void				*tree_iter_next(t_tree_iter *stack)
 			stack->tail = NULL;
 	}
 	else
-		pop_info = NULL;
-	return (pop_info);
+		pop_data = NULL;
+	return (pop_data);
 }
-
-void				stack_destroy(t_tree_iter *stack, void dest_fun(void *a))
-{
-	t_tree_iter_node	*x;
-	t_tree_iter_node	*y;
-
-	x = stack->top;
-	if (stack)
-	{
-		while (x)
-		{
-			y = x->next;
-			dest_fun(x->info);
-			free(x);
-			x=y;
-		}
-		free(stack);
-	}
-}
-

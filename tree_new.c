@@ -11,16 +11,16 @@
 
 t_tree			*tree_new(int (*comp_fun)(const void *, const void *),
 					void (*dest_fun)(void *),
-					void (*info_dest_fun)(void *))
+					void (*data_dest_fun)(void *))
 {
 	t_tree		*new_tree;
 
 	new_tree = safe_malloc(sizeof(t_tree));
 	new_tree->compare = comp_fun;
 	new_tree->destroy_key = dest_fun;
-	new_tree->destroy_info = info_dest_fun;
+	new_tree->destroy_data = data_dest_fun;
 	new_tree->print_key = NULL;
-	new_tree->print_info = NULL;
+	new_tree->print_data = NULL;
 	new_tree->nil = safe_malloc(sizeof(t_tree_node));
 	new_tree->nil->right = new_tree->nil;
 	new_tree->nil->left = new_tree->nil;
