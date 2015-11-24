@@ -7,7 +7,7 @@
 
 #include "fttree.h"
 
-t_tree_node			*tree_exact_query(t_tree *tree, void *q)
+t_tree_node			*tree_get(t_tree *tree, void *q)
 {
 	t_tree_node		*x;
 	t_tree_node		*nil;

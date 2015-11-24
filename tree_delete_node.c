@@ -49,6 +49,7 @@ void				tree_delete_node(t_tree *tree, t_tree_node *z)
 
 	y = ((z->left == tree->nil) || (z->right == tree->nil)) ? z : tree_successor(tree, z);
 	x = (y->left == tree->nil) ? y->right : y->left;
+
 	if (tree->root == (x->parent = y->parent))
 		tree->root->left = x;
 	else

@@ -19,7 +19,7 @@ typedef struct					s_tree
 	void						(*destroy_key)(void *a);
 	void						(*destroy_data)(void *a);
 	void						(*print_key)(const void *a);
-	void						(*print_data)(void *a);
+	void						(*print_data)(const void *a);
 	t_tree_node 				*root;
 	t_tree_node 				*nil;
 }								t_tree;
@@ -27,14 +27,13 @@ typedef struct					s_tree
 t_tree			*tree_new(int (*comp_fun)(const void *, const void *),
 					void (*dest_fun)(void *),
 					void (*data_dest_fun)(void *));
-t_tree_iter		*tree_enumerate(t_tree *tree,void *low, void *high);
+t_tree_iter		*tree_get_iter(t_tree *tree,void *low, void *high);
 t_tree_node		*tree_insert(t_tree *tree, void *key, void *data);
 t_tree_node 	*tree_predecessor(t_tree *tree, t_tree_node *node);
 t_tree_node 	*tree_successor(t_tree *tree,t_tree_node *node);
-t_tree_node 	*tree_exact_query(t_tree *tree, void *query);
+t_tree_node 	*tree_get(t_tree *tree, void *query);
 void			tree_print(t_tree *tree);
 void			tree_destroy(t_tree *tree);
 void			tree_delete_node(t_tree *tree, t_tree_node *node);
-void			null_function(void *ptr);
 
 #endif

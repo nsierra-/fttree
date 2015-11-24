@@ -7,7 +7,7 @@
 
 #include "fttree.h"
 
-t_tree_iter			*tree_enumerate(t_tree *tree, void *low, void *high)
+t_tree_iter			*tree_get_iter(t_tree *tree, void *low, void *high)
 {
 	t_tree_iter		*enum_result_stack;
 	t_tree_node		*nil;
