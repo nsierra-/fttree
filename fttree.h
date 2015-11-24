@@ -1,7 +1,7 @@
 #ifndef FTTREE_H
 # define FTTREE_H
 
-# include "ftstack.h"
+# include "fttree_iter.h"
 
 typedef struct					s_tree_node
 {
@@ -27,7 +27,7 @@ typedef struct					s_tree
 t_tree			*tree_new(int (*comp_fun)(const void *, const void *),
 					void (*dest_fun)(void *),
 					void (*info_dest_fun)(void *));
-t_stack			*tree_enumerate(t_tree *tree,void *low, void *high);
+t_tree_iter		*tree_enumerate(t_tree *tree,void *low, void *high);
 t_tree_node		*tree_insert(t_tree *tree, void *key, void *info);
 t_tree_node 	*tree_predecessor(t_tree *tree, t_tree_node *node);
 t_tree_node 	*tree_successor(t_tree *tree,t_tree_node *node);

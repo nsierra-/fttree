@@ -37,7 +37,7 @@ void InfoDest(void *a){
 
 int				main(void)
 {
-  t_stack		*enumResult;
+  t_tree_iter		*enumResult;
   int			*newInt;
   int			option = 0;
   int			newKey,newKey2;
@@ -131,7 +131,7 @@ setvbuf(stdout, NULL, _IONBF, 0);
 			printf("type low and high keys to see all keys between them\n");
 			scanf("%i %i",&newKey,&newKey2);
 			enumResult=tree_enumerate(tree,&newKey,&newKey2);
-			while ((newNode = stack_pop(enumResult)))
+			while ((newNode = tree_iter_next(enumResult)))
 			{
 				tree->print_key(newNode->key);
 				printf("\n");

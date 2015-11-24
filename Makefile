@@ -12,8 +12,7 @@
 
 NAME =		libfttree.a
 
-SRC =		ftstack.c \
-			tree_new.c \
+SRC =		tree_new.c \
 			tree_insert.c \
 			tree_exact_query.c \
 			tree_successor.c \
@@ -25,6 +24,7 @@ SRC =		ftstack.c \
 			tree_delete_fixup.c \
 			left_rotate.c \
 			right_rotate.c \
+			fttree_iter.c \
 			misc.c
 
 
