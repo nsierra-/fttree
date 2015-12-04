@@ -32,7 +32,7 @@ OBJ = 		$(SRC:.c=.o)
 
 CC = 		gcc
 
-CFLAGS = 	-pedantic -Wall -Wextra -Werror
+CFLAGS = 	-pedantic -ansi -Wall -Wextra -Werror
 
 all: $(NAME)
 

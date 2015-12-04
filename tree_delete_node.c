@@ -1,13 +1,27 @@
-/*
-* @Author: Work
-* @Date:   2015-11-24 01:06:30
-* @Last Modified by:   Work
-* @Last Modified time: 2015-11-24 01:45:42
-*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tree_delete_node.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nsierra- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2015/12/04 15:14:59 by nsierra-          #+#    #+#             */
+/*   Updated: 2015/12/04 15:15:00 by nsierra-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include <stdio.h>
 #include <stdlib.h>
 #include "fttree.h"
 #include "private/tree_internals.h"
+
+static void			delete_if_needed(t_tree *tree, t_tree_node *node)
+{
+	if (tree->destroy_key)
+		tree->destroy_key(node->key);
+	if (tree->destroy_data)
+		tree->destroy_data(node->data);
+}
 
 static void			delete_node(
 						t_tree *tree,
@@ -20,8 +34,7 @@ static void			delete_node(
 
 		if (!(y->red))
 			tree_delete_fixup(tree, x);
-		tree->destroy_key(z->key);
-		tree->destroy_data(z->data);
+		delete_if_needed(tree, z);
 		y->left = z->left;
 		y->right = z->right;
 		y->parent = z->parent;
@@ -35,8 +48,7 @@ static void			delete_node(
 		free(z);
 		return ;
 	}
-	tree->destroy_key(y->key);
-	tree->destroy_data(y->data);
+	delete_if_needed(tree, y);
 	if (!(y->red))
 		tree_delete_fixup(tree, x);
 	free(y);
@@ -49,7 +61,6 @@ void				tree_delete_node(t_tree *tree, t_tree_node *z)
 
 	y = ((z->left == tree->nil) || (z->right == tree->nil)) ? z : tree_successor(tree, z);
 	x = (y->left == tree->nil) ? y->right : y->left;
-
 	if (tree->root == (x->parent = y->parent))
 		tree->root->left = x;
 	else

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fttree_iter2.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nsierra- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2015/12/04 15:24:42 by nsierra-          #+#    #+#             */
+/*   Updated: 2015/12/04 15:24:43 by nsierra-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdlib.h>
 #include "fttree.h"
 #include "private/misc.h"
@@ -11,7 +23,6 @@ t_tree_iter				*tree_iter_new(void)
 	new_stack->top = NULL;
 	return (new_stack);
 }
-
 
 void					tree_iter_push(t_tree_iter *stack, void *new_data_ptr)
 {

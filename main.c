@@ -1,9 +1,14 @@
-/*
-* @Author: Work
-* @Date:   2015-11-23 19:59:50
-* @Last Modified by:   Work
-* @Last Modified time: 2015-11-24 02:57:17
-*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nsierra- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2015/12/04 15:14:35 by nsierra-          #+#    #+#             */
+/*   Updated: 2015/12/04 15:14:39 by nsierra-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "fttree.h"
 #include <stdio.h>
@@ -35,7 +40,7 @@ int					main(void)
 
 	setvbuf(stdout, NULL, _IONBF, 0);
 	/* Creation */
-	tree = tree_new(compare_strings, free, free);
+	tree = tree_new(compare_strings, NULL, NULL);
 	tree->print_data = simple_print;
 	tree->print_key = simple_print;
 
@@ -58,10 +63,8 @@ int					main(void)
 	free(iter);
 
 	/* Destruction */
+	node1 = tree_get(tree, "Key 3");
 	tree_delete_node(tree, node1);
 	tree_destroy(tree);
-
-	while (42)
-		;
 	return 0;
 }
