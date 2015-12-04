@@ -40,27 +40,27 @@ int					main(void)
 
 	setvbuf(stdout, NULL, _IONBF, 0);
 	/* Creation */
-	tree = tree_new(compare_strings, free, free);
-	tree->print_data = simple_print;
+	tree = tree_new(compare_strings, free, free); 	/* New tree, using compare_string as comparison fuction and free to delete key and data */
+	tree->print_data = simple_print; 				/* Optionnaly set functions to print key and data */
 	tree->print_key = simple_print;
 
 	/* Insertion */
-	tree_insert(tree, key1, data1);
+	tree_insert(tree, key1, data1);					/* Inserting data1 into tree with key1 as index */
 	tree_insert(tree, key2, data2);
 	tree_insert(tree, key3, data3);
 
 	/* Accession */
-	node1 = tree_get(tree, "Key 3");
+	node1 = tree_get(tree, "Key 3");				/* Asking for node associated with "Key 3" key */
 	node2 = tree_predecessor(tree, node1);
 	printf("Data for \"Key 3\" is \"%s\"\n", node1->data);
 	printf("Predecessor is %s <-> %s\n", node2->key, node2->data);
 
 	/* Iteration */
 	puts("Starting iteration...");
-	iter = tree_new_iter(tree, node1, node2);
+	iter = tree_new_iter(tree, node1, node2);		/* Asking a new iterator for tree from node1 to node2 */
 	while ((node1 = tree_iter_next(iter)))
 		printf("%s <-> %s\n", node1->key, node1->data);
-	free(iter);
+	free(iter);										/* Do not forget to free your iterator after the loop */
 
 	/* Printing */
 	tree_print(tree);
