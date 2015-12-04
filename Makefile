@@ -19,7 +19,7 @@ SRC =		tree_new.c \
 			tree_predecessor.c \
 			tree_destroy.c \
 			tree_delete_node.c \
-			tree_get_iter.c \
+			tree_new_iter.c \
 			tree_print.c \
 			tree_delete_fixup.c \
 			left_rotate.c \

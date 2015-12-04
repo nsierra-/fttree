@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/04 15:15:33 by nsierra-          #+#    #+#             */
-/*   Updated: 2015/12/04 15:15:34 by nsierra-         ###   ########.fr       */
+/*   Created: 2015/12/04 15:42:18 by nsierra-          #+#    #+#             */
+/*   Updated: 2015/12/04 15:42:18 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,15 @@
 #include "fttree.h"
 
 t_tree			*tree_new(int (*comp_fun)(const void *, const void *),
-					void (*dest_fun)(void *),
-					void (*data_dest_fun)(void *))
+					void (*key_destruction_fun)(void *),
+					void (*data_destruction_fun)(void *))
 {
 	t_tree		*new_tree;
 
 	new_tree = safe_malloc(sizeof(t_tree));
 	new_tree->compare = comp_fun;
-	new_tree->destroy_key = dest_fun;
-	new_tree->destroy_data = data_dest_fun;
+	new_tree->destroy_key = key_destruction_fun;
+	new_tree->destroy_data = data_destruction_fun;
 	new_tree->print_key = NULL;
 	new_tree->print_data = NULL;
 	new_tree->nil = safe_malloc(sizeof(t_tree_node));

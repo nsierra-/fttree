@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/04 15:14:35 by nsierra-          #+#    #+#             */
-/*   Updated: 2015/12/04 15:14:39 by nsierra-         ###   ########.fr       */
+/*   Created: 2015/12/04 15:41:56 by nsierra-          #+#    #+#             */
+/*   Updated: 2015/12/04 15:41:59 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ void				simple_print(const void *msg)
 
 int					main(void)
 {
-	char			key1[] = "Key 1";
-	char			key2[] = "Key 2";
-	char			key3[] = "Key 3";
-	char			data1[] = "Data 1";
-	char			data2[] = "Data 2";
-	char			data3[] = "Data 3";
+	char			*key1 = strdup("Key 1");
+	char			*key2 = strdup("Key 2");
+	char			*key3 = strdup("Key 3");
+	char			*data1 = strdup("Data 1");
+	char			*data2 = strdup("Data 2");
+	char			*data3 = strdup("Data 3");
 	t_tree_node		*node1 = NULL;
 	t_tree_node		*node2 = NULL;
 	t_tree_iter		*iter = NULL;
@@ -40,7 +40,7 @@ int					main(void)
 
 	setvbuf(stdout, NULL, _IONBF, 0);
 	/* Creation */
-	tree = tree_new(compare_strings, NULL, NULL);
+	tree = tree_new(compare_strings, free, free);
 	tree->print_data = simple_print;
 	tree->print_key = simple_print;
 
@@ -56,15 +56,18 @@ int					main(void)
 	printf("Predecessor is %s <-> %s\n", node2->key, node2->data);
 
 	/* Iteration */
-	printf("Starting iteration...");
-	iter = tree_get_iter(tree, node1, node2);
+	puts("Starting iteration...");
+	iter = tree_new_iter(tree, node1, node2);
 	while ((node1 = tree_iter_next(iter)))
 		printf("%s <-> %s\n", node1->key, node1->data);
 	free(iter);
+
+	/* Printing */
+	tree_print(tree);
 
 	/* Destruction */
 	node1 = tree_get(tree, "Key 3");
 	tree_delete_node(tree, node1);
 	tree_destroy(tree);
-	return 0;
+	return (0);
 }

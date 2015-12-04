@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/04 15:15:05 by nsierra-          #+#    #+#             */
-/*   Updated: 2015/12/04 15:15:07 by nsierra-         ###   ########.fr       */
+/*   Created: 2015/12/04 15:42:16 by nsierra-          #+#    #+#             */
+/*   Updated: 2015/12/04 15:42:16 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void			tree_dest_helper(t_tree *tree, t_tree_node *x)
 	}
 }
 
-void 				tree_destroy(t_tree *tree)
+void				tree_destroy(t_tree *tree)
 {
 	tree_dest_helper(tree, tree->root->left);
 	free(tree->root);

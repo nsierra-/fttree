@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/04 15:14:52 by nsierra-          #+#    #+#             */
-/*   Updated: 2015/12/04 15:14:54 by nsierra-         ###   ########.fr       */
+/*   Created: 2015/12/04 15:42:16 by nsierra-          #+#    #+#             */
+/*   Updated: 2015/12/04 15:42:16 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void				tree_delete_fixup(t_tree *tree, t_tree_node *x)
 			w = x->parent->left;
 			if (w->red)
 				is_red_2(tree, x, w);
-	    	tree_delete_fixup_2(tree, root, x, w);
+			tree_delete_fixup_2(tree, root, x, w);
 		}
 	}
 	x->red = 0;

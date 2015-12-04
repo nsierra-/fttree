@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/04 15:14:59 by nsierra-          #+#    #+#             */
-/*   Updated: 2015/12/04 15:15:00 by nsierra-         ###   ########.fr       */
+/*   Created: 2015/12/04 15:42:16 by nsierra-          #+#    #+#             */
+/*   Updated: 2015/12/04 15:42:16 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ static void			delete_node(
 {
 	if (y != z)
 	{
-
 		if (!(y->red))
 			tree_delete_fixup(tree, x);
 		delete_if_needed(tree, z);
@@ -58,8 +57,10 @@ void				tree_delete_node(t_tree *tree, t_tree_node *z)
 {
 	t_tree_node		*y;
 	t_tree_node		*x;
+	t_tree_node		*nil;
 
-	y = ((z->left == tree->nil) || (z->right == tree->nil)) ? z : tree_successor(tree, z);
+	nil = tree->nil;
+	y = ((z->left == nil) || (z->right == nil)) ? z : tree_successor(tree, z);
 	x = (y->left == tree->nil) ? y->right : y->left;
 	if (tree->root == (x->parent = y->parent))
 		tree->root->left = x;

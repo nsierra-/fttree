@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/04 15:15:26 by nsierra-          #+#    #+#             */
-/*   Updated: 2015/12/04 15:15:28 by nsierra-         ###   ########.fr       */
+/*   Created: 2015/12/04 15:42:17 by nsierra-          #+#    #+#             */
+/*   Updated: 2015/12/04 15:42:17 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,24 @@
 #include "private/misc.h"
 #include "private/tree_internals.h"
 
-static void			tree_insert_help(t_tree *tree, t_tree_node *z)
+static void		tree_insert_help(t_tree *tree, t_tree_node *z)
 {
-	t_tree_node		*x;
-	t_tree_node		*y;
-	t_tree_node		*nil;
+	t_tree_node	*x;
+	t_tree_node	*y;
+	t_tree_node	*nil;
 
 	nil = tree->nil;
 	z->right = nil;
 	z->left = nil;
-	y=tree->root;
-	x=tree->root->left;
+	y = tree->root;
+	x = tree->root->left;
 	while (x != nil)
 	{
 		y = x;
 		if (1 == tree->compare(x->key, z->key))
 			x = x->left;
 		else
-	    	x = x->right;
+			x = x->right;
 	}
 	z->parent = y;
 	if ((y == tree->root) || (1 == tree->compare(y->key, z->key)))

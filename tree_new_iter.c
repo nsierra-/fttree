@@ -1,37 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tree_get.c                                         :+:      :+:    :+:   */
+/*   tree_get_iter.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsierra- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/04 15:42:16 by nsierra-          #+#    #+#             */
-/*   Updated: 2015/12/04 15:42:16 by nsierra-         ###   ########.fr       */
+/*   Created: 2015/12/04 15:42:17 by nsierra-          #+#    #+#             */
+/*   Updated: 2015/12/04 15:42:17 by nsierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fttree.h"
 
-t_tree_node			*tree_get(t_tree *tree, void *q)
+t_tree_iter			*tree_new_iter(t_tree *tree, void *low, void *high)
 {
-	t_tree_node		*x;
+	t_tree_iter		*enum_result_stack;
 	t_tree_node		*nil;
-	int				comp_val;
+	t_tree_node		*x;
+	t_tree_node		*last_best;
 
-	x = tree->root->left;
 	nil = tree->nil;
-	if (x == nil)
-		return (0);
-	comp_val = tree->compare(x->key, (int *)q);
-	while (0 != comp_val)
+	x = tree->root->left;
+	last_best = nil;
+	enum_result_stack = tree_iter_new();
+	while (nil != x)
 	{
-		if (1 == comp_val)
+		if (1 == (tree->compare(x->key, high)))
 			x = x->left;
 		else
+		{
+			last_best = x;
 			x = x->right;
-		if (x == nil)
-			return (0);
-		comp_val = tree->compare(x->key, (int *)q);
+		}
 	}
-	return (x);
+	while ((last_best != nil) && (1 != tree->compare(low, last_best->key)))
+	{
+		tree_iter_push(enum_result_stack, last_best);
+		last_best = tree_predecessor(tree, last_best);
+	}
+	return (enum_result_stack);
 }
